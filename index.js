@@ -1,3 +1,3 @@
-// run `node index.js` in the terminal
+const { initialiseDatabase } = require("./db/database");
 
-console.log(`Hello Node.js v${process.versions.node}!`);
+initialiseDatabase();

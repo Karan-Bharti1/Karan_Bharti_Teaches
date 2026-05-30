@@ -1,7 +1,19 @@
-const mongoose=require('mongoose')
-require("dotenv").config()
-const mongooseUri=process.env.MONGODB
-async function initialiseDatabase() {
-    await mongoose.connect(mongooseUri).then(()=>console.log("Connected to the Database")).catch((error)=>console.log("Error while connecting to the database", Error))
-}
-module.exports={initialiseDatabase}
+const mongoose = require("mongoose");
+
+const initialiseDatabase = async () => {
+  console.log("Trying to connect...");
+  console.log("URI:", process.env.MONGODB);
+
+  try {
+    const response = await mongoose.connect(process.env.MONGODB);
+
+    console.log("Database connected successfully");
+    console.log("Host:", response.connection.host);
+
+  } catch (error) {
+    console.error("Connection error message:", error.message);
+    console.error("Full error:", error);
+  }
+};
+
+module.exports = { initialiseDatabase };
